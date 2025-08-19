@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="nl" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Starter Site — zonder iets te installeren</title>
+  <meta name="description" content="Een direct-werkende, responsieve one‑pager die je kunt openen in je browser en later zo kunt uploaden naar elke hostingdienst." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Starter Site — zonder iets te installeren" />
+  <meta property="og:description" content="Een direct-werkende, responsieve one‑pager die je lokaal kunt openen en zo online kunt zetten." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%231a73e8'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif' font-size='48'%3EStarter Site%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231a73e8'/%3E%3Cpath d='M34 6l-4 20h12l-14 32 4-20H20L34 6z' fill='white'/%3E%3C/svg%3E" />
+
+  <style>
+    /* ============ Base & Theme ============ */
+    :root {
+      --bg: #0b0e14;         /* dark background */
+      --card: #121826;       /* card background */
+      --text: #e5e7eb;       /* text */
+      --muted: #9aa3af;      /* muted text */
+      --brand: #1a73e8;      /* brand primary */
+      --brand-2: #10b981;    /* brand accent */
+      --ring: rgba(26,115,232,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    .light {
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --text: #0b1220;
+      --muted: #475569;
+      --brand: #1a73e8;
+      --brand-2: #0ea5e9;
+      --ring: rgba(26,115,232,.25);
+      --shadow: 0 12px 28px rgba(2,8,23,.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(16,185,129,.15), transparent 60%),
+                  radial-gradient(1000px 700px at -10% 20%, rgba(26,115,232,.15), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .skip-link {
+      position: absolute; left: 0; top: -40px; background: var(--brand); color:#fff; padding: .5rem .75rem; border-radius: .5rem; z-index: 1000;
+    }
+    .skip-link:focus { top: .5rem; }
+
+    /* ============ Layout ============ */
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 100; backdrop-filter: saturate(180%) blur(10px);
+      background: color-mix(in hsl, var(--bg) 88%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--card), transparent 70%);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .8rem 0;
+    }
+    .brand { display: flex; align-items: center; gap: .6rem; font-weight: 700; letter-spacing: .2px; }
+    .brand svg { width: 28px; height: 28px; }
+    nav ul { display: flex; gap: .8rem; list-style: none; margin: 0; padding: 0; }
+    nav a { text-decoration: none; color: var(--text); padding: .55rem .8rem; border-radius: .7rem; opacity: .9; }
+    nav a:hover, nav a:focus { background: color-mix(in srgb, var(--card), transparent 60%); outline: none; }
+    .actions { display: flex; gap: .6rem; }
+
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .7rem 1rem; border-radius: .9rem; border: 1px solid color-mix(in srgb, var(--brand), transparent 55%); background: linear-gradient(180deg, color-mix(in srgb, var(--brand), transparent 88%), transparent), color-mix(in srgb, var(--card), transparent 15%); box-shadow: var(--shadow); color: var(--text); text-decoration: none; font-weight: 600; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(26,115,232,.18); }
+    .btn.secondary { border-color: color-mix(in srgb, var(--brand-2), transparent 55%); background: linear-gradient(180deg, color-mix(in srgb, var(--brand-2), transparent 88%), transparent), color-mix(in srgb, var(--card), transparent 12%); }
+
+    /* ============ Hero ============ */
+    .hero { padding: 72px 0 36px; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; align-items: center; }
+    .kicker { display:inline-block; font-size: .8rem; text-transform: uppercase; letter-spacing: .14em; background: color-mix(in srgb, var(--brand), transparent 85%); color: var(--text); padding: .35rem .6rem; border-radius: .6rem; }
+    h1 { font-size: clamp(2rem, 4vw + .5rem, 3.2rem); line-height: 1.1; margin: 12px 0; }
+    .lead { font-size: clamp(1rem, 1.2vw + .6rem, 1.25rem); color: var(--muted); margin: 0 0 18px; }
+    .cta { display: flex; gap: .7rem; flex-wrap: wrap; }
+
+    .mockup { background: var(--card); border: 1px solid color-mix(in srgb, var(--text), transparent 90%); border-radius: var(--radius); padding: .75rem; box-shadow: var(--shadow); }
+    .browser-bar { display: flex; gap: .4rem; padding: .2rem; }
+    .dot { width: 10px; height: 10px; border-radius: 999px; background: #ef4444; }
+    .dot:nth-child(2){ background:#f59e0b; } .dot:nth-child(3){ background:#22c55e; }
+    .mock-inner { border-radius: calc(var(--radius) - .5rem); overflow: hidden; border: 1px solid color-mix(in srgb, var(--text), transparent 86%); }
+
+    /* ============ Sections ============ */
+    section { padding: 56px 0; }
+    .section-title { font-size: clamp(1.4rem, 1.6vw + .6rem, 2rem); margin: 0 0 8px; }
+    .section-sub { margin: 0 0 20px; color: var(--muted); }
+
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .card { background: var(--card); border: 1px solid color-mix(in srgb, var(--text), transparent 90%); border-radius: var(--radius); padding: 1rem; box-shadow: var(--shadow); }
+    .card h3 { margin: .2rem 0 .4rem; font-size: 1.1rem; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .project { display:block; text-decoration: none; color: inherit; }
+    .thumb { aspect-ratio: 16/10; background: linear-gradient(135deg, color-mix(in srgb, var(--brand), transparent 85%), color-mix(in srgb, var(--brand-2), transparent 85%)); border-radius: .8rem; border: 1px dashed color-mix(in srgb, var(--text), transparent 80%); display:grid; place-items:center; font-weight: 700; }
+    .project h4 { margin: .6rem 0 0; }
+
+    .contact form { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+    .contact form .full { grid-column: 1/-1; }
+    label { display:block; font-size:.9rem; margin-bottom:.25rem; color: var(--muted); }
+    input, textarea {
+      width: 100%; padding: .8rem .9rem; border-radius: .7rem; border: 1px solid color-mix(in srgb, var(--text), transparent 85%);
+      background: color-mix(in srgb, var(--card), transparent 8%); color: var(--text);
+    }
+    input:focus, textarea:focus { outline: 3px solid var(--ring); border-color: var(--brand); }
+
+    footer { padding: 32px 0 48px; color: var(--muted); border-top: 1px solid color-mix(in srgb, var(--text), transparent 90%); }
+
+    /* ============ Utilities ============ */
+    .hide-on-mobile { display: none; }
+    @media (min-width: 860px){ .hide-on-mobile { display: initial; } }
+    @media (max-width: 860px){
+      .hero-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+      nav.open ul { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--card); padding: .5rem; border-bottom: 1px solid color-mix(in srgb, var(--text), transparent 90%); }
+    }
+
+    /* ============ Tiny Animations ============ */
+    @keyframes floaty { from{ transform: translateY(0); } 50%{ transform: translateY(-6px); } to{ transform: translateY(0); } }
+    .floaty { animation: floaty 6s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Direct naar inhoud</a>
+
+  <header>
+    <div class="container nav" role="navigation" aria-label="Hoofdnavigatie">
+      <a class="brand" href="#">
+        <svg aria-hidden="true" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="currentColor" opacity=".12"/><path d="M34 6l-4 20h12l-14 32 4-20H20L34 6z" fill="currentColor"/></svg>
+        <span>Starter&nbsp;Site</span>
+      </a>
+
+      <nav id="menu">
+        <button id="navToggle" aria-controls="menu" aria-expanded="false" class="btn" style="padding:.45rem .7rem">Menu</button>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#showcase">Showcase</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <button id="themeBtn" class="btn secondary" aria-pressed="false" aria-label="Schakel kleurmodus">🌗 <span class="hide-on-mobile">Thema</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="kicker">Zonder installatie</span>
+          <h1>Een moderne one‑pager die je zo kunt openen</h1>
+          <p class="lead">Open dit bestand in je browser en je hebt direct een nette website. Helemaal client‑side, snel, toegankelijk en makkelijk aan te passen.</p>
+          <div class="cta">
+            <a class="btn" href="#features">Bekijk features</a>
+            <a class="btn secondary" href="#contact">Stel een vraag</a>
+          </div>
+        </div>
+        <div>
+          <div class="mockup floaty" aria-hidden="true">
+            <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <div class="mock-inner">
+              <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" role="img" aria-label="Schematische mockup">
+                <defs>
+                  <linearGradient id="g" x1="0" x2="1">
+                    <stop offset="0%" stop-color="#1a73e8" stop-opacity=".25"/>
+                    <stop offset="100%" stop-color="#10b981" stop-opacity=".25"/>
+                  </linearGradient>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#g)"/>
+                <rect x="24" y="24" width="752" height="56" rx="12" fill="white" opacity=".08"/>
+                <rect x="24" y="100" width="500" height="52" rx="10" fill="white" opacity=".10"/>
+                <rect x="24" y="164" width="420" height="18" rx="9" fill="white" opacity=".12"/>
+                <rect x="24" y="188" width="360" height="18" rx="9" fill="white" opacity=".10"/>
+                <rect x="24" y="224" width="200" height="42" rx="10" fill="white" opacity=".12"/>
+                <rect x="240" y="224" width="160" height="42" rx="10" fill="white" opacity=".12"/>
+                <rect x="540" y="120" width="236" height="200" rx="16" fill="white" opacity=".10"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2 class="section-title">Features</h2>
+      <p class="section-sub">Kant‑en‑klaar, toegankelijk en snel te hosten (bijv. GitHub Pages, Netlify of Vercel). Gewoon uploaden: klaar.</p>
+      <div class="features">
+        <article class="card">
+          <h3>Responsief & toegankelijk</h3>
+          <p>Past zich aan elk scherm aan, met toetsenbord‑focus, contrast en skip‑link.</p>
+        </article>
+        <article class="card">
+          <h3>Donker/licht thema</h3>
+          <p>Met één klik een thema‑wisseling. Je keuze wordt lokaal onthouden.</p>
+        </article>
+        <article class="card">
+          <h3>Zero‑install</h3>
+          <p>Alles in één HTML‑bestand. Geen build‑stap, geen dependencies.</p>
+        </article>
+        <article class="card">
+          <h3>SEO‑meta & OG</h3>
+          <p>Basis SEO‑tags en een ingebouwde Open Graph‑afbeelding.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="showcase">
+      <h2 class="section-title">Showcase</h2>
+      <p class="section-sub">Vervang de voorbeelden hieronder door je eigen projecten of afbeeldingen.</p>
+      <div class="grid">
+        <a class="project card" href="#" aria-label="Project A">
+          <div class="thumb">Project A</div>
+          <h4>Project A</h4>
+          <p class="section-sub">Korte beschrijving van je project.</p>
+        </a>
+        <a class="project card" href="#" aria-label="Project B">
+          <div class="thumb">Project B</div>
+          <h4>Project B</h4>
+          <p class="section-sub">Wat maakt dit bijzonder?</p>
+        </a>
+        <a class="project card" href="#" aria-label="Project C">
+          <div class="thumb">Project C</div>
+          <h4>Project C</h4>
+          <p class="section-sub">Nog een mooie case.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Formulier gebruikt je eigen mailprogramma (geen server nodig). Of mail direct: <a id="mailLink" href="mailto:hallowereld@example.com">hallowereld@example.com</a></p>
+
+      <form action="mailto:hallowereld@example.com" method="post" enctype="text/plain">
+        <div>
+          <label for="naam">Naam</label>
+          <input id="naam" name="Naam" autocomplete="name" required />
+        </div>
+        <div>
+          <label for="email">E‑mail</label>
+          <input id="email" name="Email" type="email" autocomplete="email" required />
+        </div>
+        <div class="full">
+          <label for="bericht">Bericht</label>
+          <textarea id="bericht" name="Bericht" rows="5" placeholder="Waar kan ik mee helpen?" required></textarea>
+        </div>
+        <div class="full">
+          <button class="btn" type="submit">Verstuur via e‑mail</button>
+        </div>
+      </form>
+
+      <p style="margin-top:12px; color:var(--muted); font-size:.9rem">Privacy: dit formulier opent je e‑mailclient met ingevulde tekst. Er wordt niets opgeslagen in deze pagina.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> Jouw Naam. Gemaakt met een enkel HTML‑bestand.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle with localStorage
+    (function(){
+      const root = document.documentElement; // <html>
+      const saved = localStorage.getItem('theme');
+      if(saved === 'light') root.classList.add('light');
+      else root.classList.remove('light');
+      const btn = document.getElementById('themeBtn');
+      function setState(){
+        const light = root.classList.contains('light');
+        btn.setAttribute('aria-pressed', String(light));
+        btn.innerHTML = (light ? '🌞' : '🌗') + ' <span class="hide-on-mobile">Thema</span>';
+      }
+      setState();
+      btn.addEventListener('click', () => {
+        root.classList.toggle('light');
+        localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+        setState();
+      });
+    })();
+
+    // Mobile nav toggle
+    (function(){
+      const nav = document.getElementById('menu');
+      const toggle = document.getElementById('navToggle');
+      toggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    })();
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Starter Site",
+    "url": "http://localhost/",
+    "description": "Direct-werkende one-pager zonder installatie.",
+    "inLanguage": "nl-NL"
+  }
+  </script>
+</body>
+</html>
